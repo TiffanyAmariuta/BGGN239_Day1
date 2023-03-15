@@ -1,0 +1,33 @@
+PLINK v2.00a3LM 64-bit Intel (28 Oct 2020)
+Options in effect:
+  --bfile /n/groups/price/huwenbo/DATA/GTEx_v8/GTEx_v8_genotypes_EUR_HM3_no_strand_amb/GTEx_v8_genotype_EUR_HM3.1
+  --extract bed1 /n/groups/price/tiffany/bggn239/plink/ENSG00000158864.12_cis.txt
+  --keep /n/groups/price/tiffany/bggn239/keep_brain_eur.txt
+  --make-bed
+  --out /n/groups/price/tiffany/bggn239/plink/ENSG00000158864.12_brain
+
+Hostname: compute-f-17-14.o2.rc.hms.harvard.edu
+Working directory: /n/groups/price/tiffany/bggn239
+Start time: Tue Mar 14 19:54:17 2023
+
+Random number seed: 1678838057
+193230 MiB RAM detected; reserving 96615 MiB for main workspace.
+Using up to 20 threads (change this with --threads).
+715 samples (0 females, 0 males, 715 ambiguous; 715 founders) loaded from
+/n/groups/price/huwenbo/DATA/GTEx_v8/GTEx_v8_genotypes_EUR_HM3_no_strand_amb/GTEx_v8_genotype_EUR_HM3.1.fam.
+85831 variants loaded from
+/n/groups/price/huwenbo/DATA/GTEx_v8/GTEx_v8_genotypes_EUR_HM3_no_strand_amb/GTEx_v8_genotype_EUR_HM3.1.bim.
+Note: No phenotype data present.
+--extract bed1: 85482 variants excluded.
+--keep: 189 samples remaining.
+189 samples (0 females, 0 males, 189 ambiguous; 189 founders) remaining after
+main filters.
+349 variants remaining after main filters.
+Writing /n/groups/price/tiffany/bggn239/plink/ENSG00000158864.12_brain.fam ...
+done.
+Writing /n/groups/price/tiffany/bggn239/plink/ENSG00000158864.12_brain.bim ...
+done.
+Writing /n/groups/price/tiffany/bggn239/plink/ENSG00000158864.12_brain.bed ...
+done.
+
+End time: Tue Mar 14 19:54:17 2023
