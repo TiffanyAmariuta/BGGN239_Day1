@@ -1,15 +1,17 @@
 # BGGN239
-Data and instructions for BGGN 239 in-class exercises
+#### Data and instructions for BGGN 239 in-class exercises
 
+```
 git clone https://github.com/TiffanyAmariuta/BGGN239
+```
 
-Genes of interest for today's exercises: 
+Genes of interest for Day 1 exercises: 
 ENSG00000158864.12 for Brain_Cerebellum
 ENSG00000116704.7 for Whole_Blood
 
-Diseaes of interest for today's exercises: 
-PASS_Alzheimers_deRojas2021.sumstats (alzheimer's)
-PASS_UC_deLange2017.sumstats (ulcerative colitis)
+Diseaes of interest for Day 1 exercises: 
+PASS_Alzheimers_deRojas2021.sumstats (Alzheimer's)
+PASS_UC_deLange2017.sumstats (Ulcerative Colitis)
 
 GTEx gene expression files: 
 dimensions: genes on the rows, people on the columns (deidentified IDs)
@@ -40,42 +42,48 @@ You will use FUSION to do this, which runs GCTA (the standard method for estimat
 
 In command line: (you should be in the BGGN239/ directory)
 
+```
 wget https://github.com/gusevlab/fusion_twas/archive/master.zip
 unzip master.zip
 rm master.zip
 wget https://github.com/gabraham/plink2R/archive/master.zip
 unzip master.zip
 rm master.zip
+```
 
 If on Expanse, launch an interactive session and load R: 
-
+```
 module load gcc/9.2.0
 module load r
-
-#Launch R and install required libraries:
+```
+### Launch R and install required libraries:
+```
+R
 > install.packages(c('optparse','RColorBrewer'))
 > install.packages("Rcpp")
 > install.packages("Matrix")
 > install.packages("RcppEigen")
 > install.packages('plink2R-master/plink2R/',repos=NULL)
-#> install.packages("glmnet")
-#comment out library(glmnet) in fusion_twas-master/FUSION.compute_weights.R
+#> install.packages("glmnet") #if problem with install, simply comment out library(glmnet) in fusion_twas-master/FUSION.compute_weights.R
+```
 
-#download plink
+### Download plink
+```
 wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20230116.zip
 unzip plink_linux_x86_64_20230116.zip 
-#rename LICENSE to LICENSE_plink
+#rename LICENSE to LICENSE_plink when prompted 
 ./plink #should run 
+```
 
+For example, run this in command line:
 
-For example:
-
+```
 gene=ENSG00000158864.12
 tissue=brain
 mkdir tmp
 home=XX #PUT THE FULL PATH UP TO BGGN239 REPO (see for PATH_plink)
 Rscript fusion_twas-master/FUSION.compute_weights.R --bfile ${gene}_${tissue} --covar covar_${tissue}.txt --tmp tmp/tmp_${gene} --out out_${gene}_${tissue} --models top1 --PATH_gcta fusion_twas-master/gcta_nr_robust --PATH_plink ${home}/BGGN239/plink --hsq_p 1 >> gcta_${gene}_${tissue}.txt
-
+````
 
 Running this script also produces a file: out_ENSG00000158864.12_brain.wgt.RDat. We will use this file later. 
 
@@ -87,10 +95,12 @@ For the second in-class exercise, use the read_plink() R function to read in gen
 
 For the third in-class exercise, we will perform a TWAS: 
 
+```
 for sumstats in PASS_Alzheimers_deRojas2021.sumstats PASS_UC_deLange2017.sumstats
 do 
 Rscript fusion_twas-master/FUSION.assoc_test.R --sumstats $sumstats --weights twas.pos --weights_dir ${home}/BGGN239 --ref_ld_chr 1000G.EUR. --chr 1 --out TWAS_${sumstats}.dat
 done
+```
 
 What are the TWAS p-values for each gene in each tissue? Which genes are significantly associated with each disease? 
 
