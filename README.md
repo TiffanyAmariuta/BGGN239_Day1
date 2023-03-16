@@ -74,7 +74,7 @@ gene=ENSG00000158864.12
 tissue=brain
 mkdir tmp
 home=XX #PUT THE FULL PATH UP TO BGGN239 REPO (see for PATH_plink)
-Rscript fusion_twas-master/FUSION.compute_weights.R --bfile ${gene}_${tissue} --covar covar_${tissue}.txt --tmp tmp/tmp_${gene} --out out_${gene}_${tissue} --models top1 --PATH_gcta fusion_twas-master/gcta_nr_robust --PATH_plink ${home}/BGGN239/plink >> gcta_${gene}_${tissue}.txt
+Rscript fusion_twas-master/FUSION.compute_weights.R --bfile ${gene}_${tissue} --covar covar_${tissue}.txt --tmp tmp/tmp_${gene} --out out_${gene}_${tissue} --models top1 --PATH_gcta fusion_twas-master/gcta_nr_robust --PATH_plink ${home}/BGGN239/plink --hsq_p 1 >> gcta_${gene}_${tissue}.txt
 
 
 Running this script also produces a file: out_ENSG00000158864.12_brain.wgt.RDat. We will use this file later. 
