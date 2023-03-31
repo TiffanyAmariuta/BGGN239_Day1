@@ -9,7 +9,7 @@ Genes of interest for Day 1 exercises:
 ENSG00000158864.12 for Brain_Cerebellum
 ENSG00000116704.7 for Whole_Blood
 
-Diseaes of interest for Day 1 exercises: 
+Diseases of interest for Day 1 exercises: 
 PASS_Alzheimers_deRojas2021.sumstats (Alzheimer's)
 PASS_UC_deLange2017.sumstats (Ulcerative Colitis)
 
