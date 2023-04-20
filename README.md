@@ -2,7 +2,7 @@
 #### Data and instructions for BGGN 239 in-class exercises
 
 ```
-git clone https://github.com/TiffanyAmariuta/BGGN239
+git clone https://github.com/TiffanyAmariuta/BGGN239_Day1
 ```
 
 Genes of interest for Day 1 exercises: 
