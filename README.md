@@ -40,7 +40,9 @@ ENSG00000116704.7_blood (with .bed, .bim, .fam, .log extensions)
 Our first exercise is to estimate heritability of the two genes above in each of the two tissues listed above. 
 You will use FUSION to do this, which runs GCTA (the standard method for estimating heritability). (http://gusevlab.org/projects/fusion/)
 
-In command line: (you should be in the BGGN239/ directory)
+In command line: (you should be in the BGGN239_Day1/ directory)
+If you've git cloned, this directory will exist. If you've downloaded the zip file from the google drive, the directory might be named BGGN239_Day1-main/
+Go to this directory and install FUSION, plink2R function, various R packages using CRAN, and plink 
 
 ```
 wget https://github.com/gusevlab/fusion_twas/archive/master.zip
@@ -50,6 +52,8 @@ wget https://github.com/gabraham/plink2R/archive/master.zip
 unzip master.zip
 rm master.zip
 ```
+
+Launch R or Rstudio on your PC. 
 
 If on Expanse, launch an interactive session and load R: 
 ```
@@ -67,7 +71,7 @@ R
 #> install.packages("glmnet") #if problem with install, simply comment out library(glmnet) in fusion_twas-master/FUSION.compute_weights.R
 ```
 
-### Download plink
+### For macOS, download plink: 
 ```
 wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20230116.zip
 unzip plink_linux_x86_64_20230116.zip 
@@ -75,14 +79,24 @@ unzip plink_linux_x86_64_20230116.zip
 ./plink #should run 
 ```
 
-For example, run this in command line:
+### For windows, download plink:
+```
+wget https://s3.amazonaws.com/plink1-assets/plink_win64_20230116.zip
+unzip plink_win64_20230116.zip
+#might need to rename LICENSE to LICENSE_plink when prompted (I don't have a windows machine, so I haven't done this.)
+./plink #should run 
+```
+
+Test that everything works: run this in command line...
 
 ```
 gene=ENSG00000158864.12
 tissue=brain
+home=XX #PUT THE FULL PATH UP TO and including BGGN239_Day1 (or BGGN239_Day1-main) directory (see for PATH_plink)
+#$home should include fusion, the files downloaded from the drive or repo, and the plink executable
+cd $home
 mkdir tmp
-home=XX #PUT THE FULL PATH UP TO BGGN239 REPO (see for PATH_plink)
-Rscript fusion_twas-master/FUSION.compute_weights.R --bfile ${gene}_${tissue} --covar covar_${tissue}.txt --tmp tmp/tmp_${gene} --out out_${gene}_${tissue} --models top1 --PATH_gcta fusion_twas-master/gcta_nr_robust --PATH_plink ${home}/BGGN239/plink --hsq_p 1 >> gcta_${gene}_${tissue}.txt
+Rscript fusion_twas-master/FUSION.compute_weights.R --bfile ${gene}_${tissue} --covar covar_${tissue}.txt --tmp tmp/tmp_${gene} --out out_${gene}_${tissue} --models top1 --PATH_gcta fusion_twas-master/gcta_nr_robust --PATH_plink ${home}/plink --hsq_p 1 >> gcta_${gene}_${tissue}.txt
 ````
 
 Running this script also produces a file: out_ENSG00000158864.12_brain.wgt.RDat. We will use this file later. 
@@ -98,7 +112,7 @@ For the third in-class exercise, we will perform a TWAS:
 ```
 for sumstats in PASS_Alzheimers_deRojas2021.sumstats PASS_UC_deLange2017.sumstats
 do 
-Rscript fusion_twas-master/FUSION.assoc_test.R --sumstats $sumstats --weights twas.pos --weights_dir ${home}/BGGN239 --ref_ld_chr 1000G.EUR. --chr 1 --out TWAS_${sumstats}.dat
+Rscript fusion_twas-master/FUSION.assoc_test.R --sumstats $sumstats --weights twas.pos --weights_dir ${home} --ref_ld_chr 1000G.EUR. --chr 1 --out TWAS_${sumstats}.dat
 done
 ```
 
