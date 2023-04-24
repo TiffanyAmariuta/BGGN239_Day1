@@ -112,7 +112,7 @@ For the third in-class exercise, we will perform a TWAS:
 ```
 for sumstats in PASS_Alzheimers_deRojas2021.sumstats PASS_UC_deLange2017.sumstats
 do 
-Rscript fusion_twas-master/FUSION.assoc_test.R --sumstats $sumstats --weights twas.pos --weights_dir ${home} --ref_ld_chr 1000G.EUR. --chr 1 --out TWAS_${sumstats}.dat
+Rscript fusion_twas-master/FUSION.assoc_test.R --sumstats $sumstats --weights twas.pos --weights_dir $home --ref_ld_chr 1000G.EUR. --chr 1 --out TWAS_${sumstats}.dat
 done
 ```
 
