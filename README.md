@@ -71,7 +71,7 @@ R
 #> install.packages("glmnet") #if problem with install, simply comment out library(glmnet) in fusion_twas-master/FUSION.compute_weights.R
 ```
 
-### For macOS, download plink: 
+### For linux, download plink: 
 ```
 wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20230116.zip
 unzip plink_linux_x86_64_20230116.zip 
@@ -79,15 +79,24 @@ unzip plink_linux_x86_64_20230116.zip
 ./plink #should run 
 ```
 
+### For macOS, download plink: 
+```
+wget https://s3.amazonaws.com/plink1-assets/plink_mac_20230116.zip
+unzip plink_mac_20230116.zip
+#might need to rename LICENSE to LICENSE_plink when prompted (I use a linux machine, so I haven't done this.)
+./plink #should run 
+```
+
 ### For windows, download plink:
 ```
 wget https://s3.amazonaws.com/plink1-assets/plink_win64_20230116.zip
 unzip plink_win64_20230116.zip
-#might need to rename LICENSE to LICENSE_plink when prompted (I don't have a windows machine, so I haven't done this.)
+#might need to rename LICENSE to LICENSE_plink when prompted (I use a linux machine, so I haven't done this.)
 ./plink #should run 
 ```
 
-Test that everything works: run this in command line...
+Test that everything works: 
+If on a mac or linux system, run this in command line... (it might work on windows too!)
 
 ```
 gene=ENSG00000158864.12
@@ -98,6 +107,16 @@ cd $home
 mkdir tmp
 Rscript fusion_twas-master/FUSION.compute_weights.R --bfile ${gene}_${tissue} --covar covar_${tissue}.txt --tmp tmp/tmp_${gene} --out out_${gene}_${tissue} --models top1 --PATH_gcta fusion_twas-master/gcta_nr_robust --PATH_plink ${home}/plink --hsq_p 1 >> gcta_${gene}_${tissue}.txt
 ````
+If on a windows PC, and the above code didn't work, you can open the fusion_twas-master/FUSION.compute_weights.R script in RStudio and supply the arguments as specified below. First, initialize the option list: 
+```
+opt <- list()
+```
+Then, fill out each flag. For example, 
+```
+opt$bfile <- "ENSG00000158864.12_brain" 
+```
+to specify the --bfile argument shown below. Do this for the following flags: opt$covar, opt$tmp, opt$out, opt$models, opt$PATH_gcta, opt$PATH_plink, opt$hsq_p. For other "opt" in lines 1 - 53 of FUSION.compute_weights.R, use opt$ to specify the default flag value, for example, opt$pheno <- NA.
+Then, copy/paste code starting on line 57 (models = ...) into Rstudio or R console to run. The heritability result will be printed out at line 239. 
 
 Running this script also produces a file: out_ENSG00000158864.12_brain.wgt.RDat. We will use this file later. 
 
@@ -107,7 +126,7 @@ Are the heritability estimates significantly different from one another? What is
  
 For the second in-class exercise, use the read_plink() R function to read in genotypes for ENSG00000158864.12 in blood. You can look up an example of this function as it's used in fusion_twas-master/FUSION.compute_weights.R. Then, calculate the squared correlation of genotypes across all pairs of SNPs. How many pairs of variants have r2 = 1, r2 >= 0.8? What proportion of SNP pairs are in perfect LD (e.g. r2 = 1). 
 
-For the third in-class exercise, we will perform a TWAS: 
+For the third in-class exercise, we will perform a TWAS. If on linux or mac, you can run this from command line below. If on windows, you can supply the arguments as listed below into Rstudio.  
 
 ```
 for sumstats in PASS_Alzheimers_deRojas2021.sumstats PASS_UC_deLange2017.sumstats
