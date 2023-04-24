@@ -126,7 +126,7 @@ Are the heritability estimates significantly different from one another? What is
  
 For the second in-class exercise, use the read_plink() R function to read in genotypes for ENSG00000158864.12 in blood. You can look up an example of this function as it's used in fusion_twas-master/FUSION.compute_weights.R. Then, calculate the squared correlation of genotypes across all pairs of SNPs. How many pairs of variants have r2 = 1, r2 >= 0.8? What proportion of SNP pairs are in perfect LD (e.g. r2 = 1). 
 
-For the third in-class exercise, we will perform a TWAS. If on linux or mac, you can run this from command line below. If on windows, you can supply the arguments as listed below into Rstudio.  
+For the third in-class exercise, we will perform a TWAS. If on linux or mac, you can run this from command line below. If on windows, you can supply the arguments as listed below into Rstudio (or the command below might work on windows as well!).  
 
 ```
 for sumstats in PASS_Alzheimers_deRojas2021.sumstats PASS_UC_deLange2017.sumstats
