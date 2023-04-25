@@ -71,6 +71,11 @@ R
 #> install.packages("glmnet") #if problem with install, simply comment out library(glmnet) in fusion_twas-master/FUSION.compute_weights.R
 ```
 
+### Download plink: for those without wget function: 
+```
+https://www.cog-genomics.org/plink/
+```
+
 ### For linux, download plink: 
 ```
 wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20230116.zip
