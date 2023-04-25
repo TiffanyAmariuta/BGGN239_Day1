@@ -67,7 +67,7 @@ R
 > install.packages("Rcpp")
 > install.packages("Matrix")
 > install.packages("RcppEigen")
-> install.packages('plink2R-master/plink2R/',repos=NULL)
+> install.packages('plink2R-master/plink2R/',repos=NULL, type = "source")
 #> install.packages("glmnet") #if problem with install, simply comment out library(glmnet) in fusion_twas-master/FUSION.compute_weights.R
 ```
 
