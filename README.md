@@ -53,6 +53,8 @@ unzip master.zip
 rm master.zip
 ```
 
+If having issue installing plink2R, check out this repo and issue: https://github.com/gabraham/plink2R/issues/1#issuecomment-1337177621
+
 Launch R or Rstudio on your PC. 
 
 If on Expanse, launch an interactive session and load R: 
